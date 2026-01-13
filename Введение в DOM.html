@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>DOM Practice</title>
+</head>
+<body>
+
+<p id="elem1">1</p>
+<p id="elem2">2</p>
+<p id="elem3">3</p>
+
+<div id="block">
+	<p>1</p>
+	<p>2</p>
+</div>
+
+<div class="block">
+	<p>1</p>
+	<p>2</p>
+</div>
+
+<p class="www">text</p>
+<p class="www">text</p>
+
+<input id="button1" type="submit" value="button1">
+<input id="button2" type="submit" value="button2">
+<input id="button3" type="submit" value="button3">
+
+<p id="elem4">text</p>
+<p id="elem5">text</p>
+<p id="elem6">text</p>
+<p id="elem7">text</p>
+<p id="elem8">text</p>
+
+<p id="elem9">text</p>
+
+<input id="btnDbl" type="submit" value="dblclick">
+<input id="btnOver" type="submit" value="mouseover">
+<input id="btnOut" type="submit" value="mouseout">
+<input id="btnOverOut" type="submit" value="hover">
+
+<p id="textP">hello</p>
+<input id="textBtn" type="submit" value="read">
+<input id="writeBtn" type="submit" value="write">
+
+<p id="num1">3</p>
+<p id="num2">4</p>
+<input id="sumBtn" type="submit" value="sum">
+
+<p id="n1">1</p>
+<p id="n2">2</p>
+<p id="n3">3</p>
+<div id="sumDiv"></div>
+<input id="sumDivBtn" type="submit">
+
+<p id="incP">5</p>
+<input id="incBtn" type="submit">
+
+<p id="excP">hi</p>
+<input id="excBtn" type="submit">
+
+<p id="htmlP"><b>bold</b></p>
+<input id="htmlBtn" type="submit">
+<input id="htmlWriteBtn" type="submit">
+
+<input id="email" type="email">
+<input id="typeBtn" type="submit">
+<input id="setTypeBtn" type="submit">
+
+<a id="link" href="https://example.com">link</a>
+<input id="linkBtn" type="submit">
+<p id="linkP"></p>
+
+<img id="img" src="https://via.placeholder.com/150">
+<input id="imgBtn" type="submit">
+<p id="imgP"></p>
+
+<input id="widthBtn" type="submit">
+<input id="doubleWidthBtn" type="submit">
+
+<img id="imgSwitch" src="">
+<input id="img1Btn" type="submit">
+<input id="img2Btn" type="submit">
+
+<input id="input1">
+<input id="input2">
+<input id="inputBtn" type="submit">
+
+<p id="inputP"></p>
+
+<input id="sqIn">
+<input id="sqOut">
+<input id="sqBtn" type="submit">
+
+<input id="swap1">
+<input id="swap2">
+<input id="swapBtn" type="submit">
+
+<input class="avg">
+<input class="avg">
+<input class="avg">
+<input class="avg">
+<input class="avg">
+<input id="avgBtn" type="submit">
+<p id="avgP"></p>
+
+<input id="focusIn" value="text">
+
+<div id="classDiv" class="content no-gap"></div>
+<input id="classBtn" type="submit">
+
+<div id="setClass"></div>
+<input id="setClassBtn" type="submit">
+
+<div id="multiClass" class="aaa bbb ccc"></div>
+<input id="multiClassBtn" type="submit">
+
+<img id="image" src="avatar.png" width="300" height="500">
+
+<p class="clickP">a</p>
+<p class="clickP">b</p>
+<p class="clickP">c</p>
+<p class="clickP">d</p>
+<p class="clickP">e</p>
+
+<input class="blurSq" value="2">
+<input class="blurSq" value="3">
+<input class="blurSq" value="4">
+
+<p class="group">x</p>
+<p class="group">y</p>
+<p class="group">z</p>
+<input id="groupBtn" type="submit">
+
+<p class="numGroup">1</p>
+<p class="numGroup">2</p>
+<p class="numGroup">3</p>
+
+<script>
+let e1 = document.querySelector('#elem1');
+let e2 = document.querySelector('#elem2');
+let e3 = document.querySelector('#elem3');
+console.log(e1.textContent, e2.textContent, e3.textContent);
+
+console.log(document.querySelector('#block p'));
+console.log(document.querySelector('.block p'));
+console.log(document.querySelector('.www'));
+
+button1.addEventListener('click', () => console.log(1));
+button2.addEventListener('click', () => console.log(2));
+button3.addEventListener('click', () => console.log(3));
+
+function func1(){console.log(1)}
+function func2(){console.log(2)}
+button1.addEventListener('click', func1);
+button2.addEventListener('click', func2);
+
+function msg(){console.log('message')}
+document.querySelectorAll('#elem4,#elem5,#elem6,#elem7,#elem8')
+.forEach(e=>e.addEventListener('click',msg));
+
+function f1(){console.log(1)}
+function f2(){console.log(2)}
+function f3(){console.log(3)}
+elem9.addEventListener('click',f1);
+elem9.addEventListener('click',f2);
+elem9.addEventListener('click',f3);
+
+btnDbl.addEventListener('dblclick',()=>console.log('dbl'));
+btnOver.addEventListener('mouseover',()=>console.log('over'));
+btnOut.addEventListener('mouseout',()=>console.log('out'));
+btnOverOut.addEventListener('mouseover',()=>console.log('in'));
+btnOverOut.addEventListener('mouseout',()=>console.log('out'));
+
+textBtn.addEventListener('click',()=>console.log(textP.textContent));
+writeBtn.addEventListener('click',()=>textP.textContent='new');
+
+sumBtn.addEventListener('click',()=>console.log(+num1.textContent + +num2.textContent));
+sumDivBtn.addEventListener('click',()=>sumDiv.textContent=+n1.textContent + +n2.textContent + +n3.textContent);
+
+incBtn.addEventListener('click',()=>incP.textContent=+incP.textContent+1);
+excBtn.addEventListener('click',()=>excP.textContent+='!');
+
+htmlBtn.addEventListener('click',()=>console.log(htmlP.innerHTML));
+htmlWriteBtn.addEventListener('click',()=>htmlP.innerHTML='<b>text</b>');
+
+typeBtn.addEventListener('click',()=>console.log(email.type));
+setTypeBtn.addEventListener('click',()=>email.type='submit');
+
+linkBtn.addEventListener('click',()=>linkP.textContent=link.href);
+
+imgBtn.addEventListener('click',()=>imgP.textContent=img.src);
+widthBtn.addEventListener('click',()=>img.width=300);
+doubleWidthBtn.addEventListener('click',()=>img.width*=2);
+
+img1Btn.addEventListener('click',()=>imgSwitch.src='https://via.placeholder.com/100');
+img2Btn.addEventListener('click',()=>imgSwitch.src='https://via.placeholder.com/200');
+
+inputBtn.addEventListener('click',()=>input1.value='text');
+inputBtn.addEventListener('click',()=>inputP.textContent=input1.value);
+
+sqBtn.addEventListener('click', () => sqOut.value = (+sqIn.value) ** 2);
+
+swapBtn.addEventListener('click',()=>{
+	let t=swap1.value;
+	swap1.value=swap2.value;
+	swap2.value=t;
+});
+
+avgBtn.addEventListener('click',()=>{
+	let a=[...document.querySelectorAll('.avg')].map(e=>+e.value);
+	avgP.textContent=a.reduce((s,v)=>s+v,0)/a.length;
+});
+
+focusIn.addEventListener('focus',function(){this.value=1});
+focusIn.addEventListener('blur',function(){this.value=2});
+
+classBtn.addEventListener('click',()=>alert(classDiv.className));
+setClassBtn.addEventListener('click',()=>setClass.className='new');
+multiClassBtn.addEventListener('click',()=>console.log(multiClass.className.split(' ')));
+
+console.log(document.querySelector('#image').src);
+
+document.querySelectorAll('.clickP').forEach(p=>{
+	p.addEventListener('click',function(){this.textContent+='!'})
+});
+
+document.querySelectorAll('.blurSq').forEach(i=>{
+	i.addEventListener('blur',function(){this.value=this.value**2})
+});
+
+groupBtn.addEventListener('click',()=>{
+	document.querySelectorAll('.group').forEach(e=>e.textContent='text')
+});
+
+document.querySelectorAll('.numGroup').forEach(p=>{
+	p.addEventListener('click',function(){this.textContent=this.textContent**2})
+});
+</script>
+
+</body>
+</html>

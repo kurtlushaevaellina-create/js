@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи по JavaScript: disabled, чекбоксы, радиокнопки</title>
+</head>
+<body>
+    <h1>Работа с атрибутом disabled в JavaScript</h1>
+    
+    <h2>Задача 1: Простая блокировка</h2>
+    <input type="text" id="input1" placeholder="Инпут для задачи 1">
+    <button id="btn1">Заблокировать этот инпут</button>
+    
+    <hr>
+    
+    <h2>Задача 2: Блокировка и разблокировка</h2>
+    <input type="text" id="input2" placeholder="Инпут для задачи 2">
+    <button id="btnBlock">Заблокировать</button>
+    <button id="btnUnblock">Разблокировать</button>
+    
+    <hr>
+    
+    <h2>Задача 3: Проверка статуса</h2>
+    <input type="text" id="input3" placeholder="Инпут для задачи 3">
+    <button id="btnCheck">Проверить статус блокировки</button>
+    <p id="status">Нажмите кнопку, чтобы узнать статус</p>
+    
+    <hr>
+    
+    <h1>Работа с чекбоксами в JavaScript</h1>
+    
+    <h2>Задача 1: Установка и снятие отметки чекбокса</h2>
+    <input type="checkbox" id="checkbox1">
+    <label for="checkbox1">Чекбокс для задачи 1</label>
+    <br><br>
+    <button id="btnCheckOn">Отметить чекбокс</button>
+    <button id="btnCheckOff">Снять отметку</button>
+    
+    <hr>
+    
+    <h2>Задача 2: Проверка состояния чекбокса</h2>
+    <input type="checkbox" id="checkbox2">
+    <label for="checkbox2">Поставьте галочку для приветствия</label>
+    <br><br>
+    <button id="btnCheckStatus">Проверить состояние</button>
+    <p id="checkboxResult">Результат появится здесь</p>
+    
+    <hr>
+    
+    <h1>Чередование атрибутов без значений</h1>
+    
+    <h2>Пример: Переключение состояния disabled</h2>
+    <input type="text" id="toggleInput" disabled placeholder="Заблокированный инпут">
+    <button id="toggleButton">Переключить блокировку</button>
+    
+    <h3>Объяснение работы кода:</h3>
+    <p>
+        Код <code>elem.disabled = !elem.disabled</code> работает следующим образом:
+        <br>1. Оператор <code>!</code> (логическое НЕ) инвертирует значение
+        <br>2. Если <code>elem.disabled = true</code>, то <code>!true = false</code>
+        <br>3. Если <code>elem.disabled = false</code>, то <code>!false = true</code>
+        <br>4. Таким образом, каждый клик меняет значение на противоположное
+    </p>
+    
+    <hr>
+    
+    <h2>Задача: Чередование состояния чекбокса</h2>
+    <input type="checkbox" id="toggleCheckbox">
+    <label for="toggleCheckbox">Чекбокс для переключения</label>
+    <br><br>
+    <button id="toggleCheckboxBtn">Переключить чекбокс</button>
+    <p id="toggleCheckboxStatus">Статус: не отмечен</p>
+    
+    <hr>
+    
+    <h1>Работа с радиокнопками в JavaScript</h1>
+    
+    <h2>Задача: Вывод value выбранной радиокнопки</h2>
+    <div>
+        <input type="radio" name="color" value="красный" id="red">
+        <label for="red">Красный</label>
+    </div>
+    <div>
+        <input type="radio" name="color" value="зеленый" id="green">
+        <label for="green">Зеленый</label>
+    </div>
+    <div>
+        <input type="radio" name="color" value="синий" id="blue" checked>
+        <label for="blue">Синий (выбран по умолчанию)</label>
+    </div>
+    
+    <br>
+    <button id="showRadioValue">Показать выбранный цвет</button>
+    <p id="radioResult">Выбранный цвет: синий</p>
+
+    <script>
+        // ========== Задачи с атрибутом disabled ==========
+        
+        // Задача 1
+        const input1 = document.querySelector('#input1');
+        const btn1 = document.querySelector('#btn1');
+        
+        btn1.addEventListener('click', function() {
+            input1.disabled = true;
+        });
+        
+        // Задача 2
+        const input2 = document.querySelector('#input2');
+        const btnBlock = document.querySelector('#btnBlock');
+        const btnUnblock = document.querySelector('#btnUnblock');
+        
+        btnBlock.addEventListener('click', function() {
+            input2.disabled = true;
+        });
+        
+        btnUnblock.addEventListener('click', function() {
+            input2.disabled = false;
+        });
+        
+        // Задача 3
+        const input3 = document.querySelector('#input3');
+        const btnCheck = document.querySelector('#btnCheck');
+        const status = document.querySelector('#status');
+        
+        btnCheck.addEventListener('click', function() {
+            const isDisabled = input3.disabled;
+            status.textContent = `Инпут ${isDisabled ? 'заблокирован' : 'разблокирован'}`;
+        });
+        
+        // ========== Задачи с чекбоксами ==========
+        
+        // Задача 1: Установка и снятие отметки
+        const checkbox1 = document.querySelector('#checkbox1');
+        const btnCheckOn = document.querySelector('#btnCheckOn');
+        const btnCheckOff = document.querySelector('#btnCheckOff');
+        
+        btnCheckOn.addEventListener('click', function() {
+            checkbox1.checked = true;
+        });
+        
+        btnCheckOff.addEventListener('click', function() {
+            checkbox1.checked = false;
+        });
+        
+        // Задача 2: Проверка состояния
+        const checkbox2 = document.querySelector('#checkbox2');
+        const btnCheckStatus = document.querySelector('#btnCheckStatus');
+        const checkboxResult = document.querySelector('#checkboxResult');
+        
+        btnCheckStatus.addEventListener('click', function() {
+            if (checkbox2.checked) {
+                checkboxResult.textContent = 'привет';
+            } else {
+                checkboxResult.textContent = 'пока';
+            }
+        });
+        
+        // Автообновление при изменении чекбокса
+        checkbox2.addEventListener('change', function() {
+            if (checkbox2.checked) {
+                checkboxResult.textContent = 'привет (автообновление)';
+            } else {
+                checkboxResult.textContent = 'пока (автообновление)';
+            }
+        });
+        
+        // ========== Чередование атрибутов ==========
+        
+        // Пример: Переключение состояния disabled
+        const toggleInput = document.querySelector('#toggleInput');
+        const toggleButton = document.querySelector('#toggleButton');
+        
+        toggleButton.addEventListener('click', function() {
+            // Используем оператор логического НЕ для инвертирования значения
+            toggleInput.disabled = !toggleInput.disabled;
+            
+            // Дополнительно меняем текст placeholder для наглядности
+            if (toggleInput.disabled) {
+                toggleInput.placeholder = "Заблокированный инпут";
+            } else {
+                toggleInput.placeholder = "Разблокированный инпут";
+            }
+        });
+        
+        // Задача: Чередование состояния чекбокса
+        const toggleCheckbox = document.querySelector('#toggleCheckbox');
+        const toggleCheckboxBtn = document.querySelector('#toggleCheckboxBtn');
+        const toggleCheckboxStatus = document.querySelector('#toggleCheckboxStatus');
+        
+        // Функция для обновления статуса чекбокса
+        function updateCheckboxStatus() {
+            toggleCheckboxStatus.textContent = `Статус: ${toggleCheckbox.checked ? 'отмечен' : 'не отмечен'}`;
+        }
+        
+        // Инициализация статуса
+        updateCheckboxStatus();
+        
+        toggleCheckboxBtn.addEventListener('click', function() {
+            // Инвертируем текущее значение checked
+            toggleCheckbox.checked = !toggleCheckbox.checked;
+            
+            // Обновляем отображение статуса
+            updateCheckboxStatus();
+        });
+        
+        // Автообновление при клике на сам чекбокс
+        toggleCheckbox.addEventListener('change', updateCheckboxStatus);
+        
+        // ========== Работа с радиокнопками ==========
+        
+        const showRadioValueBtn = document.querySelector('#showRadioValue');
+        const radioResult = document.querySelector('#radioResult');
+        const radioButtons = document.querySelectorAll('input[name="color"]');
+        
+        showRadioValueBtn.addEventListener('click', function() {
+            // Перебираем все радиокнопки с name="color"
+            for (let radio of radioButtons) {
+                if (radio.checked) {
+                    // Нашли отмеченную радиокнопку - выводим её value
+                    radioResult.textContent = `Выбранный цвет: ${radio.value}`;
+                    break; // Выходим из цикла, так как нашли нужный элемент
+                }
+            }
+        });
+        
+        // Дополнительно: автообновление при выборе радиокнопки
+        for (let radio of radioButtons) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    radioResult.textContent = `Выбранный цвет: ${this.value} (автообновление)`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>

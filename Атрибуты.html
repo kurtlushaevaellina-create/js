@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Атрибуты JS</title>
+</head>
+<body>
+
+<input id="elem" value="text">
+
+<input id="elem2">
+
+<input id="elem3" value="text">
+
+<div id="elem4" data-text="str">text</div>
+
+<div data-num="1">text</div>
+<div data-num="2">text</div>
+<div data-num="3">text</div>
+<div data-num="4">text</div>
+<div data-num="5">text</div>
+
+<button id="btn1">Клик</button>
+<button id="btn2">Показать</button>
+
+<input id="elem5" data-length="5">
+
+<input id="elem6" data-min="5" data-max="10">
+
+<div id="elem7" data-product-price="1000" data-product-amount="5">
+	товар яблоки
+</div>
+
+<p>абзац</p>
+<p>абзац</p>
+<p>абзац</p>
+
+<input id="elem8" class="www zzz">
+
+<p id="elem9" class="www ggg zzz"></p>
+
+<script>
+let elem = document.querySelector('#elem');
+let value1 = elem.getAttribute('value');
+
+let elem2 = document.querySelector('#elem2');
+elem2.setAttribute('value', 'text');
+elem2.setAttribute('class', 'valid');
+
+let elem3 = document.querySelector('#elem3');
+elem3.removeAttribute('value');
+
+let hasVal = elem.hasAttribute('value');
+
+let elem4 = document.querySelector('#elem4');
+elem4.addEventListener('click', function () {
+	elem4.textContent += elem4.dataset.text;
+});
+
+let divs = document.querySelectorAll('div[data-num]');
+for (let div of divs) {
+	div.addEventListener('click', function () {
+		div.textContent += div.dataset.num;
+	});
+}
+
+let btn1 = document.querySelector('#btn1');
+let btn2 = document.querySelector('#btn2');
+btn1.dataset.count = 0;
+btn1.addEventListener('click', function () {
+	btn1.dataset.count++;
+});
+btn2.addEventListener('click', function () {
+	alert(btn1.dataset.count);
+});
+
+let elem5 = document.querySelector('#elem5');
+elem5.addEventListener('blur', function () {
+	if (elem5.value.length != elem5.dataset.length) {
+		alert('Неверное количество символов');
+	}
+});
+
+let elem6 = document.querySelector('#elem6');
+elem6.addEventListener('blur', function () {
+	let len = elem6.value.length;
+	if (len < elem6.dataset.min || len > elem6.dataset.max) {
+		alert('Количество символов вне диапазона');
+	}
+});
+
+let elem7 = document.querySelector('#elem7');
+elem7.addEventListener('click', function () {
+	let sum = elem7.dataset.productPrice * elem7.dataset.productAmount;
+	elem7.textContent += sum;
+});
+
+let paragraphs = document.querySelectorAll('p');
+for (let i = 0; i < paragraphs.length; i++) {
+	paragraphs[i].setAttribute('data-num', i + 1);
+}
+
+let elem8 = document.querySelector('#elem8');
+let classValue = elem8.getAttribute('class');
+
+let elem9 = document.querySelector('#elem9');
+
+let classesCount = elem9.classList.length;
+
+for (let cls of elem9.classList) {
+	console.log(cls);
+}
+
+elem9.classList.add('xxx');
+
+elem9.classList.remove('www');
+elem9.classList.remove('zzz');
+</script>
+
+</body>
+</html>

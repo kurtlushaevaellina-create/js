@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM functions</title>
+	<style>
+		td {
+			width: 50px;
+			height: 50px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+
+<p id="elem1"></p>
+<p id="elem2"></p>
+
+<p class="elem"></p>
+<p class="elem"></p>
+<p class="elem"></p>
+
+<p class="num">1</p>
+<p class="num">2</p>
+<p class="num">3</p>
+<p class="num">4</p>
+<p class="num">5</p>
+
+<p class="ex">text</p>
+<p class="ex">text</p>
+
+<input id="input1">
+<input id="input2">
+
+<ul id="list"></ul>
+
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3">
+	<p>1</p>
+	<p>2</p>
+	<p>3</p>
+</div>
+
+<script>
+	function setText(selector, text) {
+		let elem = document.querySelector(selector);
+		elem.textContent = text;
+	}
+
+	setText('#elem1', 'text1');
+	setText('#elem2', 'text2');
+
+	function setAttr(selector, attr, value) {
+		let elem = document.querySelector(selector);
+		elem.setAttribute(attr, value);
+	}
+
+	setAttr('#elem1', 'data-test', '123');
+
+	function setTextGroup(selector, text) {
+		let elems = document.querySelectorAll(selector);
+		for (let elem of elems) {
+			elem.textContent = text;
+		}
+	}
+
+	setTextGroup('.elem', 'text');
+
+	function appendText(selector, text) {
+		let elems = document.querySelectorAll(selector);
+		for (let elem of elems) {
+			elem.textContent += text;
+		}
+	}
+
+	appendText('.elem', '!');
+
+	function forEach(selector, func) {
+		let elems = document.querySelectorAll(selector);
+		for (let elem of elems) {
+			func(elem);
+		}
+	}
+
+	forEach('.num', function(elem) {
+		elem.textContent = elem.textContent ** 2;
+	});
+
+	forEach('.ex', function(elem) {
+		elem.textContent += '!';
+	});
+
+	function forEachIndex(selector, func) {
+		let elems = document.querySelectorAll(selector);
+		for (let i = 0; i < elems.length; i++) {
+			func(elems[i], i);
+		}
+	}
+
+	forEachIndex('.ex', function(elem, index) {
+		elem.textContent = index + elem.textContent;
+	});
+
+	function setTextElem(elem, text) {
+		elem.textContent = text;
+	}
+
+	let e1 = document.getElementById('elem1');
+	let e2 = document.getElementById('elem2');
+
+	setTextElem(e1, 'new1');
+	setTextElem(e2, 'new2');
+
+	function appendTextElem(elem, text) {
+		elem.textContent += text;
+	}
+
+	let ps = document.querySelectorAll('.num');
+	for (let p of ps) {
+		appendTextElem(p, '!');
+	}
+
+	function setValue(input, text) {
+		input.value = text;
+	}
+
+	setValue(document.getElementById('input1'), 'hello');
+	setValue(document.getElementById('input2'), 'world');
+
+	function setTextElems(elems, text) {
+		for (let elem of elems) {
+			elem.textContent = text;
+		}
+	}
+
+	setTextElems(document.querySelectorAll('.elem'), 'group');
+
+	function appendTextElems(elems, text) {
+		for (let elem of elems) {
+			elem.textContent += text;
+		}
+	}
+
+	appendTextElems(document.querySelectorAll('.elem'), '?');
+
+	function appendElem(ul, text) {
+		let li = document.createElement('li');
+		li.textContent = text;
+		ul.appendChild(li);
+	}
+
+	let arr = ['a', 'b', 'c'];
+	let ul = document.getElementById('list');
+	for (let item of arr) {
+		appendElem(ul, item);
+	}
+
+	function createTable(rows, cols, parent) {
+		let table = document.createElement('table');
+		for (let i = 0; i < rows; i++) {
+			let tr = document.createElement('tr');
+			for (let j = 0; j < cols; j++) {
+				let td = document.createElement('td');
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+		}
+		parent.appendChild(table);
+	}
+
+	createTable(3, 4, document.getElementById('div1'));
+	createTable(5, 6, document.getElementById('div2'));
+
+	function createTableReturn(rows, cols) {
+		let table = document.createElement('table');
+		for (let i = 0; i < rows; i++) {
+			let tr = document.createElement('tr');
+			for (let j = 0; j < cols; j++) {
+				let td = document.createElement('td');
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+		}
+		return table;
+	}
+
+	let table = createTableReturn(3, 4);
+	table.style.color = 'red';
+	document.getElementById('div3').appendChild(table);
+
+	function createTableByArr(arr) {
+		let table = document.createElement('table');
+		for (let row of arr) {
+			let tr = document.createElement('tr');
+			for (let cell of row) {
+				let td = document.createElement('td');
+				td.textContent = cell;
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+		}
+		return table;
+	}
+
+	let arr2 = [[1,2,3],[4,5,6],[7,8,9]];
+	document.getElementById('div3').appendChild(createTableByArr(arr2));
+</script>
+
+</body>
+</html>
